@@ -3,6 +3,26 @@
 <head>
 <meta charset="utf-8" />
 <title>leaflet</title>
+<style type="text/css">@layer htmltools {
+.html-fill-container {
+display: flex;
+flex-direction: column;
+
+min-height: 0;
+min-width: 0;
+}
+.html-fill-container > .html-fill-item {
+
+flex: 1 1 auto;
+min-height: 0;
+min-width: 0;
+}
+.html-fill-container > :not(.html-fill-item) {
+
+flex: 0 0 auto;
+}
+}
+</style>
 <script>(function() {
   // If window.HTMLWidgets is already defined, then use it; otherwise create a
   // new object. This allows preceding code to set options that affect the
@@ -3527,7 +3547,7 @@ methods.setGroupOptions = function (group, options) {
   this.showHideGroupsOnZoom();
 };
 
-methods.addRasterImage = function (uri, bounds, opacity, attribution, layerId, group) {
+methods.addRasterImage = function (uri, bounds, layerId, group, options) {
   // uri is a data URI containing an image. We want to paint this image as a
   // layer at (top-left) bounds[0] to (bottom-right) bounds[1].
   // We can't simply use ImageOverlay, as it uses bilinear scaling which looks
@@ -3647,12 +3667,10 @@ methods.addRasterImage = function (uri, bounds, opacity, attribution, layerId, g
 
   img.src = uri;
 
-  var canvasTiles = _leaflet2["default"].gridLayer({
-    opacity: opacity,
-    attribution: attribution,
+  var canvasTiles = _leaflet2["default"].gridLayer(Object.assign({}, options, {
     detectRetina: true,
     async: true
-  }); // NOTE: The done() function MUST NOT be invoked until after the current
+  })); // NOTE: The done() function MUST NOT be invoked until after the current
   // tick; done() looks in Leaflet's tile cache for the current tile, and
   // since it's still being constructed, it won't be found.
 
@@ -5236,9 +5254,9 @@ function asArray(value) {
 </head>
 <body style="background-color: white;">
 <div id="htmlwidget_container">
-  <div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-bddd9c2078aa616b644d" style="width:100%;height:400px;"></div>
+  <div class="leaflet html-widget html-fill-item" id="htmlwidget-08b2b1899bdbab0a9ceb" style="width:100%;height:400px;"></div>
 </div>
-<script type="application/json" data-for="htmlwidget-bddd9c2078aa616b644d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"worldCopyJump":false},"calls":[{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[-4.66307,-12.4931,1.21652,-12.381944,-13.3544,-5.63764,3.23694,-11.7268,27.9805586,5.81736,0.58622,-10.3342,-18.9988,-25.0747,-8.156510000000001,-13.054,-12.62,-16.7479],[143.316,289.4467,281.6599,306.608056,293.3723,283.1748,307.6301,292.485,94.6884956,291.0161,290.1641,298.4309,318.7701,17.9767,140.009,297.9073,284.3,294.8776],4,null,null,{"interactive":true,"className":"","stroke":false,"color":["#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#0D6FD1","#0D6FD1","#0D6FD1","#0D6FD1","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#0D6FD1","#E03A3A"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#0D6FD1","#0D6FD1","#0D6FD1","#0D6FD1","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#0D6FD1","#E03A3A"],"fillOpacity":0.8},null,null,["<b>Alamblak<\/b><br/>Family: Sepik<br/>both<br/>Remark: only 1 example with inanimates out of 6<br/>Source: bruce1984alamblak[153-158, 231-232]","<b>Amarakaeri<\/b><br/>Family: Harakmbut<br/>both<br/>Remark: only 2 examples with inanimates out of 8<br/>Source: vanlinden2012morphology;vanlinden2020pc;vanlinden2011causativization;vanlindenforthcharakmbut[21]","<b>Awa-Cuaiquer<\/b><br/>Family: Barbacoan<br/>animate<br/>Remark: 6 examples<br/>Source: curnow1997awacuaiquer[165]","<b>Awetí<\/b><br/>Family: Tupian<br/>both<br/>Remark: more examples with human/animates than inanimates (3-4/12)<br/>Source: reiter2011aweti[196-198, 228]","<b>Cavineña<\/b><br/>Family: Pano-Tacanan<br/>both<br/>Remark: only 1 ex with inanimates out of 11<br/>Source: guillaume2008cavinena[297ff]","<b>Shawi<\/b><br/>Family: Cahuapanan<br/>animate<br/>Remark: 10 examples<br/>Source: rojasberscia2013chayahuita[91-94];barrazagarcia2005shawi[127, 178-180]","<b>Teko<\/b><br/>Family: Tupian<br/>both<br/>Remark: NA<br/>Source: rose2011emerillon[255-260]","<b>Ese Ejja<\/b><br/>Family: Pano-Tacanan<br/>animate<br/>Remark: very few examples<br/>Source: vuillermet2012eseejja[508-10];shoemaker1983discurso;newtribesmission2001cuaderno","<b>Galo<\/b><br/>Family: Sino-Tibetan<br/>animate<br/>Remark: 6 examples<br/>Source: post2007galo[527-529, 528, 529, 328, 329, 370, 416, 419, 508, 524, 545, 548, 595, 618, 739, 778]","<b>Sikuani<\/b><br/>Family: Guahiboan<br/>animate<br/>Remark: only animate, animals included<br/>Source: queixalos1998sikuani","<b>Hup<\/b><br/>Family: Naduhup<br/>animate<br/>Remark: 5 examples<br/>Source: epps2008hup","<b>Karo (Brazil)<\/b><br/>Family: Tupian<br/>both<br/>Remark: 8 examples, only 1 with inanimates<br/>Source: gabas1999karobrazil[66-68, 83]","<b>Borum<\/b><br/>Family: Nuclear-Macro-Je<br/>both<br/>Remark: 2 examples<br/>Source: seki2004krenak[137-138];pessoa2012krenak[230, 237]","<b>Nama (Namibia)<\/b><br/>Family: Khoe-Kwadi<br/>both<br/>Remark: only 4 examples, 1 with an inanimate<br/>Source: hagman1977nama[77-78]","<b>Marind<\/b><br/>Family: Anim<br/>both<br/>Remark: several examples<br/>Source: olsson2017coastal[194-195, 103-105, 290-291, 333-334, 359-363, 365-368]","<b>Mekens<\/b><br/>Family: Tupian<br/>both<br/>Remark: 2 examples<br/>Source: galucio2001mekens[98-99]","<b>Yauyos Quechua<\/b><br/>Family: Quechuan<br/>animate<br/>Remark: the only example of an inanimate is 'virtue'...<br/>Source: shimelman2017yauyos[210,234-235]","<b>Yuracaré<\/b><br/>Family: NA<br/>both<br/>Remark: NA<br/>Source: vangijn2006yurakare[149-150]"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#0D6FD1","#E03A3A"],"labels":["animate","both"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomleft","type":"factor","title":"If &lt;yes&gt; to SocCaus-01, what is the animacy value of the causees attested with the sociative causative construction?","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[-25.0747,27.9805586],"lng":[17.9767,318.7701]},"setView":[[0,160],2,[]]},"evals":[],"jsHooks":[]}</script>
-<script type="application/htmlwidget-sizing" data-for="htmlwidget-bddd9c2078aa616b644d">{"viewer":{"width":"100%","height":400,"padding":0,"fill":true},"browser":{"width":"100%","height":400,"padding":0,"fill":true}}</script>
+<script type="application/json" data-for="htmlwidget-08b2b1899bdbab0a9ceb">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}},"worldCopyJump":false},"calls":[{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addCircleMarkers","args":[[-4.66307,-12.4931,1.21652,-12.381944,-13.3544,-5.63764,3.23694,-11.7268,27.9805586,5.81736,0.58622,-10.3342,-18.9988,-25.0747,-8.156510000000001,-13.054,-12.62,-16.7479],[143.316,289.4467,281.6599,306.608056,293.3723,283.1748,307.6301,292.485,94.6884956,291.0161,290.1641,298.4309,318.7701,17.9767,140.009,297.9073,284.3,294.8776],4,null,null,{"interactive":true,"className":"","stroke":false,"color":["#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#0D6FD1","#0D6FD1","#0D6FD1","#0D6FD1","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#0D6FD1","#E03A3A"],"weight":5,"opacity":0.5,"fill":true,"fillColor":["#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#E03A3A","#0D6FD1","#E03A3A","#0D6FD1","#0D6FD1","#0D6FD1","#0D6FD1","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#E03A3A","#0D6FD1","#E03A3A"],"fillOpacity":0.8},null,null,["<b>Alamblak<\/b><br/>Family: Sepik<br/>both<br/>Remark: only 1 example with inanimates out of 6<br/>Source: bruce1984alamblak[153-158, 231-232]","<b>Amarakaeri<\/b><br/>Family: Harakmbut<br/>both<br/>Remark: only 2 examples with inanimates out of 8<br/>Source: vanlinden2012morphology;vanlinden2020pc;vanlinden2011causativization;vanlindenforthcharakmbut[21]","<b>Awa-Cuaiquer<\/b><br/>Family: Barbacoan<br/>animate<br/>Remark: 6 examples<br/>Source: curnow1997awacuaiquer[165]","<b>Awetí<\/b><br/>Family: Tupian<br/>both<br/>Remark: more examples with human/animates than inanimates (3-4/12)<br/>Source: reiter2011aweti[196-198, 228]","<b>Cavineña<\/b><br/>Family: Pano-Tacanan<br/>both<br/>Remark: only 1 ex with inanimates out of 11<br/>Source: guillaume2008cavinena[297ff]","<b>Shawi<\/b><br/>Family: Cahuapanan<br/>animate<br/>Remark: 10 examples<br/>Source: rojasberscia2013chayahuita[91-94];barrazagarcia2005shawi[127, 178-180]","<b>Teko<\/b><br/>Family: Tupian<br/>both<br/>Remark: NA<br/>Source: rose2011emerillon[255-260]","<b>Ese Ejja<\/b><br/>Family: Pano-Tacanan<br/>animate<br/>Remark: very few examples<br/>Source: vuillermet2012eseejja[508-10];shoemaker1983discurso;newtribesmission2001cuaderno","<b>Galo<\/b><br/>Family: Sino-Tibetan<br/>animate<br/>Remark: 6 examples<br/>Source: post2007galo[527-529, 528, 529, 328, 329, 370, 416, 419, 508, 524, 545, 548, 595, 618, 739, 778]","<b>Sikuani<\/b><br/>Family: Guahiboan<br/>animate<br/>Remark: only animate, animals included<br/>Source: queixalos1998sikuani","<b>Hup<\/b><br/>Family: Naduhup<br/>animate<br/>Remark: 5 examples<br/>Source: epps2008hup","<b>Karo (Brazil)<\/b><br/>Family: Tupian<br/>both<br/>Remark: 8 examples, only 1 with inanimates<br/>Source: gabas1999karobrazil[66-68, 83]","<b>Borum<\/b><br/>Family: Nuclear-Macro-Je<br/>both<br/>Remark: 2 examples<br/>Source: seki2004krenak[137-138];pessoa2012krenak[230, 237]","<b>Nama (Namibia)<\/b><br/>Family: Khoe-Kwadi<br/>both<br/>Remark: only 4 examples, 1 with an inanimate<br/>Source: hagman1977nama[77-78]","<b>Marind<\/b><br/>Family: Anim<br/>both<br/>Remark: several examples<br/>Source: olsson2017coastal[194-195, 103-105, 290-291, 333-334, 359-363, 365-368]","<b>Mekens<\/b><br/>Family: Tupian<br/>both<br/>Remark: 2 examples<br/>Source: galucio2001mekens[98-99]","<b>Yauyos Quechua<\/b><br/>Family: Quechuan<br/>animate<br/>Remark: the only example of an inanimate is 'virtue'...<br/>Source: shimelman2017yauyos[210,234-235]","<b>Yuracaré<\/b><br/>Family: NA<br/>both<br/>Remark: NA<br/>Source: vangijn2006yurakare[149-150]"],null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLegend","args":[{"colors":["#0D6FD1","#E03A3A"],"labels":["animate","both"],"na_color":null,"na_label":"NA","opacity":1,"position":"bottomleft","type":"factor","title":"If &lt;yes&gt; to SocCaus-01, what is the animacy value of the causees attested with the sociative causative construction?","extra":null,"layerId":null,"className":"info legend","group":null}]}],"limits":{"lat":[-25.0747,27.9805586],"lng":[17.9767,318.7701]},"setView":[[0,160],2,[]]},"evals":[],"jsHooks":[]}</script>
+<script type="application/htmlwidget-sizing" data-for="htmlwidget-08b2b1899bdbab0a9ceb">{"viewer":{"width":"100%","height":400,"padding":0,"fill":true},"browser":{"width":"100%","height":400,"padding":0,"fill":true}}</script>
 </body>
 </html>
